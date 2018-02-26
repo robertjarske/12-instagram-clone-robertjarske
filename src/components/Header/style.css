@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+
+.App-header {
+  background-color: #FFF;
+  border-bottom: 1px solid #222;
+}
+
+.App-header__logo {
+  font-family: 'Satisfy', cursive;
+}
+
+.App-header__nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.App-header__nav a {
+  text-decoration: none;
+  color: #222;
+}
