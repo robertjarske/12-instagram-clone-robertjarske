@@ -1,5 +1,6 @@
 import React from 'react';
-import { SignUpForm } from '../containers';
+import { SignUpForm } from '../../containers';
+import './signIn.css';
 
 const SignUp = () => {
   return (

@@ -3,20 +3,52 @@
 .App-header {
   background-color: #FFF;
   border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .App-header__logo {
   font-family: 'Satisfy', cursive;
+  display: flex;
 }
 
-.App-header__nav {
+.App-header__logo-img {
+  border-right: 3px solid #222;
+  padding: 10px;
+  height: 1.5em;
+  margin: 5px;
+}
+
+.App-header__logo a {
+  text-decoration: none;
+  color: #222;
+  margin: 10px;
+}
+
+.App-header__nav  {
   list-style: none;
   display: flex;
   justify-content: space-around;
-
+  margin-top: 10px;
+  padding-bottom: 10px;
+  width: auto;
 }
 
-.App-header__nav a {
+.App-header__nav a, .App-header__nav-low a  {
   text-decoration: none;
   color: #222;
+  margin: 20px;
+}
+
+.App-header__nav-low {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: rgba(255, 255, 255, 0.7);
 }
