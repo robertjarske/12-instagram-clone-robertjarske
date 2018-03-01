@@ -1,0 +1,94 @@
+* {
+  list-style: none;
+}
+
+.App-photo {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-photo__photo {
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+}
+
+.photoHeader {
+  border: 1px solid #222;
+  border-bottom: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  border: 2px solid #222;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.photoHeader p {
+  margin-left: 5px;
+}
+
+.icons {
+  display: flex;
+  align-items: flex-start
+}
+
+.icons img:last-child {
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.likes {
+  display: flex;
+  flex-direction: column;
+}
+
+.likes img {
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+
+.likes p {
+  padding-left: 5px;
+}
+
+.photoFooter {
+  border: 1px solid #222;
+  border-top: none;
+  padding: 10px;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+
+.comments ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments ul li {
+  display: flex;  
+}
+
+.comments ul li img {
+  border: 2px solid #222;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 10px;  
+}
+
+.comments ul li p {
+  margin: 10px;  
+}
+
+.comments form {
+  display: flex;
+  flex-direction: column;
+}
