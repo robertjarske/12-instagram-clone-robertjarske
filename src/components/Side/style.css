@@ -2,13 +2,15 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  position: sticky;
+  top: 40px;
 }
 
 .App-side__content {
   margin-top: 30px;
   min-width: 50%;
   max-width: 100%;
-  border: 1px solid #222;
+  border-bottom: 1px solid #222;
   display: flex;
   flex-direction: column;
   align-items: center;

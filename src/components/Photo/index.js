@@ -1,35 +1,41 @@
 import React, { Component } from "react";
-import user from "../Header/user.png";
-import heart from "./heart.svg";
-import comment from "./message-circle.svg";
+import { connect } from "react-redux";
+import { showTextField } from "../../actions";
 import Form from "../comments/Form";
 import CommentList from "../comments/CommentList";
 import Like from '../Likes';
-import { connect } from "react-redux";
+import user from "../Header/user.png";
+import heart from "./heart.svg";
+import comment from "./message-circle.svg";
 import "./style.css";
 
 const mapStateToProps = state => {
   return { photos: state.photos };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    showTextField: bool => dispatch(showTextField(bool))
+  };
+};
+
 class ConnectedPhoto extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      textFieldShowing: false
-    };
   }
 
-  showCommentField() {
-    this.setState(prevState => ({
-      textFieldShowing: !prevState.textFieldShowing
-    }));
-  }
+  // showCommentField() {
+  //   this.setState(prevState => ({
+  //     textFieldShowing: !prevState.textFieldShowing
+  //   }));
+  // }
 
-  addLike() {
-    debugger;
-
+  handleClick(photo, event) {
+    const photoId = photo.id;
+    const bool = !photo.textFieldShowing;
+    
+    this.props.showTextField({ photoId, bool });
+    
   }
 
   render() {
@@ -45,22 +51,17 @@ class ConnectedPhoto extends Component {
             <img className="App-photo__photo" src={photo.photoUrl} alt="" />
           </div>
           <div className="photoFooter">
-            <div className="icons">
-              {/*<div className="likes">
-                <img onClick={this.addLike.bind(this)} src={heart} alt="" />
-                <p>{photo.likes} likes</p>
-                </div>*/}
-                <Like photoId={photo.id} likes={photo.likes}/>
-
+            <div className="icons">  
+              <Like photoId={photo.id} likes={photo.likes}/>
               <img
-                onClick={this.showCommentField.bind(this)}
+                onClick={this.handleClick.bind(this, photo)}
                 src={comment}
                 alt=""
               />
             </div>
             <div className="comments">
               <CommentList comments={photo.comments} />
-              {this.state.textFieldShowing ?
+              {photo.textFieldShowing ?
               <Form photoId={photo.id}/>
               : 
                ""
@@ -74,6 +75,6 @@ class ConnectedPhoto extends Component {
   }
 }
 
-const Photo = connect(mapStateToProps)(ConnectedPhoto);
+const Photo = connect(mapStateToProps, mapDispatchToProps)(ConnectedPhoto);
 
 export default Photo;

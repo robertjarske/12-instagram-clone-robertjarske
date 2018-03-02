@@ -1,11 +1,12 @@
 import React from 'react';
+import { PhotoGrid } from '../../containers';
 import './style.css';
 
 
 const Home = () => {
   return (
     <div className="Home">
-      <h1>Home Page</h1>
+      <PhotoGrid/>
     </div>
   )
 }

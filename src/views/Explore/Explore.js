@@ -32,9 +32,6 @@ class Explore  extends Component {
       <div className="Explore">
       <div className="feed">
       <PhotoFeed />
-      {/*photos.map((photo, index )=> {
-        return <PhotoFeed key={index} photo={photo}/>
-      })*/}
       </div>
       {!isMobile ?
       <div className="side">
