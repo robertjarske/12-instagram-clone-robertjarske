@@ -3,8 +3,6 @@ import { PhotoFeed } from '../../containers';
 import { Side } from '../../components';
 import './style.css';
 
-const photos = ['https://placehold.it/500x500', 'https://placehold.it/500x500' ];
-
 class Explore  extends Component {
   constructor() {
     super();
@@ -33,9 +31,10 @@ class Explore  extends Component {
     return (
       <div className="Explore">
       <div className="feed">
-      {photos.map((photo, index )=> {
+      <PhotoFeed />
+      {/*photos.map((photo, index )=> {
         return <PhotoFeed key={index} photo={photo}/>
-      })}
+      })*/}
       </div>
       {!isMobile ?
       <div className="side">

@@ -1,0 +1,4 @@
+.App-commentsForm {
+  display: flex;
+  flex-direction: column;
+}

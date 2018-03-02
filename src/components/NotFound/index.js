@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const NotFound = () => (
   <section className="App-error">
     <h2>Sorry, couldn't find what you are looking for</h2>

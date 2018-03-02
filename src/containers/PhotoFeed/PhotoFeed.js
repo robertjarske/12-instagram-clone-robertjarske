@@ -10,7 +10,7 @@ class PhotoFeed extends Component {
   render() {
     return (
       <div className="App-photofeed">
-        <Photo photo={this.props.photo}/>
+        <Photo /*{photo={this.props.photo}}*//>
         
       </div>
     )

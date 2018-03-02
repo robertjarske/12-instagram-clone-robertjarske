@@ -1,60 +1,79 @@
-import React, {Component} from 'react';
-import user from '../Header/user.png';
-import heart from './heart.svg';
-import comment from './message-circle.svg';
-import './style.css';
+import React, { Component } from "react";
+import user from "../Header/user.png";
+import heart from "./heart.svg";
+import comment from "./message-circle.svg";
+import Form from "../comments/Form";
+import CommentList from "../comments/CommentList";
+import Like from '../Likes';
+import { connect } from "react-redux";
+import "./style.css";
 
-class Photo extends Component {
+const mapStateToProps = state => {
+  return { photos: state.photos };
+};
+
+class ConnectedPhoto extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      textShow: false
-    }
+      textFieldShowing: false
+    };
   }
 
   showCommentField() {
     this.setState(prevState => ({
-      textShow: !prevState.textShow
-    }))
+      textFieldShowing: !prevState.textFieldShowing
+    }));
+  }
+
+  addLike() {
+    debugger;
+
   }
 
   render() {
     return (
       <div className="App-photo">
-        <div className="photoHeader">
-          <img className="avatar" src={user} alt=""/>
-          <p>TM</p>
-        </div>
-        <img className="App-photo__photo" src={this.props.photo} alt=""/>
-        <div className="photoFooter">
-          <div className="icons">
-            <div className="likes">
-              <img src={heart} alt=""/> 
-              <p>123 likes</p>
+        {this.props.photos.map(photo => (
+        <div key={photo.id}>
+          <div className="photoHeader">
+            <img className="avatar" src={user} alt="" />
+            <p>{photo.uploader}</p>
+          </div>
+          <div className="App-photo__photoHolder" key={photo.id}>
+            <img className="App-photo__photo" src={photo.photoUrl} alt="" />
+          </div>
+          <div className="photoFooter">
+            <div className="icons">
+              {/*<div className="likes">
+                <img onClick={this.addLike.bind(this)} src={heart} alt="" />
+                <p>{photo.likes} likes</p>
+                </div>*/}
+                <Like photoId={photo.id} likes={photo.likes}/>
+
+              <img
+                onClick={this.showCommentField.bind(this)}
+                src={comment}
+                alt=""
+              />
             </div>
-            <img onClick={this.showCommentField.bind(this)} src={comment} alt=""/>
-          </div>
-          <div className="comments">
-            <ul>
-              <li><img src={user} alt=""/><p>Robert</p><p>Cool mayn!</p></li>
-              <li><img src={user} alt=""/><p>Kenta</p><p>Cool brah!</p></li>
-              <li><img src={user} alt=""/><p>Stoffe</p><p>Cool fam!</p></li>
-              <li><img src={user} alt=""/><p>Gurra</p><p>Cool duude!</p></li>
-              <li><img src={user} alt=""/><p>Nils</p><p>Excellent my good sir!</p></li>
-            </ul>
-            {this.state.textShow ?
-            <form>
-            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-            <button type="submit">Send ya comment</button>
-            </form>
-          : ''
-          }
+            <div className="comments">
+              <CommentList comments={photo.comments} />
+              {this.state.textFieldShowing ?
+              <Form photoId={photo.id}/>
+              : 
+               ""
+                }
+            </div>
           </div>
         </div>
-      </div>
-    )
+      ))}
+    </div>
+    );
   }
 }
+
+const Photo = connect(mapStateToProps)(ConnectedPhoto);
 
 export default Photo;
