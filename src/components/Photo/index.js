@@ -5,7 +5,6 @@ import Form from "../comments/Form";
 import CommentList from "../comments/CommentList";
 import Like from '../Likes';
 import user from "../Header/user.png";
-import heart from "./heart.svg";
 import comment from "./message-circle.svg";
 import "./style.css";
 
@@ -20,15 +19,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 class ConnectedPhoto extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // showCommentField() {
-  //   this.setState(prevState => ({
-  //     textFieldShowing: !prevState.textFieldShowing
-  //   }));
-  // }
 
   handleClick(photo, event) {
     const photoId = photo.id;
@@ -42,13 +32,14 @@ class ConnectedPhoto extends Component {
     return (
       <div className="App-photo">
         {this.props.photos.map(photo => (
-        <div key={photo.id}>
+          
+          <div key={photo.id}>
           <div className="photoHeader">
             <img className="avatar" src={user} alt="" />
             <p>{photo.uploader}</p>
           </div>
-          <div className="App-photo__photoHolder" key={photo.id}>
-            <img className="App-photo__photo" src={photo.photoUrl} alt="" />
+          <div className="App-photo__photoHolder" key={photo.id} style={{backgroundImage: `url('${photo.imageUrl}')`}}>
+            {/*<img className="App-photo__photo" src={photo.imageUrl} alt="" />*/}
           </div>
           <div className="photoFooter">
             <div className="icons">  
@@ -68,8 +59,8 @@ class ConnectedPhoto extends Component {
                 }
             </div>
           </div>
-        </div>
-      ))}
+        </div>)
+      )}
     </div>
     );
   }

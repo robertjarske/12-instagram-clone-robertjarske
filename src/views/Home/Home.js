@@ -8,7 +8,7 @@ const Home = () => {
     <div className="Home">
       <PhotoGrid/>
     </div>
-  )
+  );
 }
 
 export default Home;

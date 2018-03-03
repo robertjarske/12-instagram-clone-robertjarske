@@ -3,9 +3,6 @@ import user from '../Header/user.png';
 import './style.css';
 
 class Side extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     return(

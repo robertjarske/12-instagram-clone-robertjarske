@@ -1,4 +1,4 @@
-import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD } from "../constants/action-types";
+import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD, FETCH_PHOTOS_START, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_FAILURE } from "../constants/action-types";
 import update from "immutability-helper";
 
 const initialState = {
@@ -6,7 +6,7 @@ const initialState = {
   photos: [
     {
       id: 0,
-      photoUrl: 'https://placehold.it/500x500',
+      imageUrl: 'https://placehold.it/500x500',
       uploader: 'TM',
       comments: [
         {
@@ -15,18 +15,19 @@ const initialState = {
           content: 'Testing here does it work'
         }
       ],
-      likes: 0,
+      likes: 3500,
       textFieldShowing: false
     },
     {
       id: 1,
-      photoUrl: 'https://placehold.it/500x500',
+      imageUrl: 'https://placehold.it/500x500',
       uploader: 'ME',
       comments: [],
       likes: 155,
-      textFieldShowing: true
+      textFieldShowing: false
     }
-  ]
+  ],
+  isFetching: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,38 +47,52 @@ const rootReducer = (state = initialState, action) => {
       return nextState;
       
 
-      case ADD_LIKE:
-        const photo = state.photos.findIndex(photo => photo.id === action.payload.photoId)
-        const like = action.payload.like
-        
-        const next = update(state, {
-          photos: {
-            [photo]: { 
-              likes: {
-                $set: state.photos[photo].likes + like
-              }
-            }
-          }
-        });
-
-        return next;
-        
-      case SHOW_TEXTFIELD:
-        const i = state.photos.findIndex(photo => photo.id === action.payload.photoId)
-        const bool = action.payload.bool
-        const newState = update(state, {
-          photos: {
-            [i]: {
-              textFieldShowing: {$set: bool}
-            }
-          }
-        })
+    case ADD_LIKE:
+      const photo = state.photos.findIndex(photo => photo.id === action.payload.photoId)
+      const like = action.payload.like
       
-        return newState;
+      const next = update(state, {
+        photos: {
+          [photo]: { 
+            likes: {
+              $set: state.photos[photo].likes + like
+            }
+          }
+        }
+      });
+
+      return next;
+        
+    case SHOW_TEXTFIELD:
+      const i = state.photos.findIndex(photo => photo.id === action.payload.photoId)
+      const bool = action.payload.bool
+      const newState = update(state, {
+        photos: {
+          [i]: {
+            textFieldShowing: {$set: bool}
+          }
+        }
+      })
+    
+      return newState;
+
+    case FETCH_PHOTOS_START:
+      return {
+        ...state,
+        isFetching: true
+      }
+
+    case FETCH_PHOTOS_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      }
+    case FETCH_PHOTOS_SUCCESS:
+      return { ...state, photos: action.payload };
 
 
-      default:
-        return state;
+    default:
+      return state;
         
   }
 };

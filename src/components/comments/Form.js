@@ -41,7 +41,6 @@ class ConnectedForm extends Component {
 
   render() {
     const { content } = this.state;
-    const { author } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="App-commentsForm">
@@ -56,7 +55,7 @@ class ConnectedForm extends Component {
           />
         </div>
 
-        <button className="App-commentsForm__btn" type="submit">Save</button>
+        <button className="App-commentsForm__btn" type="submit">Submit</button>
       </form>
     );
   }

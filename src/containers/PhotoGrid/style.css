@@ -1,0 +1,43 @@
+.App-photoGrid {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.App-grid {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.App-grid__holder {
+  min-width: 25%;
+  filter: contrast(150%) opacity(80%);
+  margin: 2px;
+  transition: all 0.5s;
+
+}
+
+.App-grid__holder:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(5px 0 5px black) contrast(150%);
+  cursor: pointer;
+
+}
+
+@media screen and (max-width: 900px) and (min-width: 700px) {
+  
+  .App-grid__holder {
+    min-width: 40%;
+  
+  }
+}
+
+@media screen and (max-width: 699px) {
+  
+  .App-grid__holder {
+    min-width: 100%;
+  
+  }
+}
+

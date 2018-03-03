@@ -1,21 +1,41 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { Home, Profile, Explore, SignUp, SignIn, NotFoundPage } from '../views';
+import { App } from '../components';
+
+import rootReducer from '../reducers';
+
+const middleware = [ thunk ];
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(...middleware)
+);
+
+// import { Home, Profile, Explore, SignUp, SignIn, NotFoundPage } from '../views';
 
 const Root = () => {
   return (
-    <main>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/explore" component={Explore} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/signin" component={SignIn} />
-        <Route component={NotFoundPage} />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={App} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+      // <Switch>
+      //   <Route exact path="/" component={Home} />
+      //   <Route path="/profile" component={Profile} />
+      //   <Route path="/explore" component={Explore} />
+      //   <Route path="/signup" component={SignUp} />
+      //   <Route path="/signin" component={SignIn} />
+      //   <Route component={NotFoundPage} />
         
-      </Switch>
-    </main>
+      // </Switch>
+    
   )
 }
   
