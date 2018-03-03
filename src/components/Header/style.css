@@ -33,6 +33,7 @@
   margin-top: 10px;
   padding-bottom: 10px;
   width: auto;
+  
 }
 
 .App-header__nav a, .App-header__nav-low a  {
@@ -41,14 +42,25 @@
   margin: 20px;
 }
 
-.App-header__nav-low {
-  position: fixed;
-  bottom: 0;
+.App-header__nav-low-ul { 
   width: 100%;
   display: flex;
   list-style: none;
   justify-content: space-around;
   padding-bottom: 10px;
   padding-top: 10px;
-  background: rgba(255, 255, 255, 0.7);
+  
+}
+
+.App-header__nav-low {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  height: 50px;
+  z-index: 30;
 }

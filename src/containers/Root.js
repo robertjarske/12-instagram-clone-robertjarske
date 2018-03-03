@@ -15,7 +15,6 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 
-// import { Home, Profile, Explore, SignUp, SignIn, NotFoundPage } from '../views';
 
 const Root = () => {
   return (
@@ -26,16 +25,6 @@ const Root = () => {
         </Switch>
       </BrowserRouter>
     </Provider>
-      // <Switch>
-      //   <Route exact path="/" component={Home} />
-      //   <Route path="/profile" component={Profile} />
-      //   <Route path="/explore" component={Explore} />
-      //   <Route path="/signup" component={SignUp} />
-      //   <Route path="/signin" component={SignIn} />
-      //   <Route component={NotFoundPage} />
-        
-      // </Switch>
-    
   )
 }
   
