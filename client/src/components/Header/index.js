@@ -50,7 +50,7 @@ class Header extends Component {
         </nav>
       : 
       <nav className="App-header__nav-low">
-          <ul className="App-header__nav-low">
+          <ul className="App-header__nav-low-ul">
             <li>
               <Link to="/"><img src={home} alt=""/></Link>
             </li>

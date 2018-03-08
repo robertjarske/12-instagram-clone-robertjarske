@@ -39,7 +39,6 @@ class ConnectedPhoto extends Component {
             <p>{photo.uploader}</p>
           </div>
           <div className="App-photo__photoHolder" key={photo.id} style={{backgroundImage: `url('${photo.imageUrl}')`}}>
-            {/*<img className="App-photo__photo" src={photo.imageUrl} alt="" />*/}
           </div>
           <div className="photoFooter">
             <div className="icons">  
