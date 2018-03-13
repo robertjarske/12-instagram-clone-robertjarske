@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Header, Footer } from '../';
 import { fetchUser } from "../../actions/auth";
+import { fetchPhotos } from '../../actions';
 import {
   Home,
   Profile,
@@ -15,12 +16,13 @@ import './style.css';
 
 
 const mapStateToProps = state => {
-  return { user: state.authReducer.user };
+  return { photos: state.photoReducer.photos, user: state.authReducer.user };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: token => dispatch(fetchUser(token))
+    fetchUser: token => dispatch(fetchUser(token)),
+    fetchPhotos: photos => dispatch(fetchPhotos())
   };
 }
 
@@ -30,7 +32,9 @@ class Root extends Component {
     this.state = { }
   }
 
-  componentDidMount(){ 
+  componentDidMount(){
+    this.props.fetchPhotos();
+   
     if (this.props.user.isLoggedIn) {
       const token = localStorage.getItem('currentUser');
       return this.props.fetchUser(token);
@@ -40,7 +44,9 @@ class Root extends Component {
   }
 
   render(){
-    const { user } = this.props;
+    const { user } = this.props.user;
+    const { photos } = this.props.photos;
+    
   return(
       <React.Fragment>
         <Header />

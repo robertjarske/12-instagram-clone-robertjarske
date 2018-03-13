@@ -6,3 +6,52 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.App-grid__modalPhoto {
+  display: flex;
+  height: 350px;
+  width: 700px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.modal {
+  display: flex;
+}
+
+.right_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.right_modal > button {
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.likes_modal {
+  display: flex;
+  margin-top: 10px;
+  
+}
+
+.photoHeader__modal {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.photoHeader__modal > img {
+  margin-right: 10px;
+}
+
+.photoFooter_modal {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}

@@ -11,9 +11,9 @@ class PhotoGrid extends Component {
     this.state = {  }
   }
 
-  componentDidMount() {
-    this.props.dispatch(fetchPhotos())
-  }
+  // componentDidMount() {
+  //   this.props.dispatch(fetchPhotos())
+  // }
 
   render() { 
     
