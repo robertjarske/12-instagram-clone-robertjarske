@@ -16,12 +16,12 @@ class PhotoGrid extends Component {
   }
 
   render() { 
+    
     const { photos } = this.props;
-
     return ( 
       <div className="App-photoGrid">
       <div className="App-grid">
-      { 
+      {
         photos.map((photo) => (
           <div className="App-grid__holder" key={photo.id}>
             <Grid photo={photo} />
@@ -35,7 +35,7 @@ class PhotoGrid extends Component {
 }
 
 const mapStateToProps = state => ({
-  photos: state.photos
+  photos: state.photoReducer.photos
 });
  
 export default connect(mapStateToProps)(PhotoGrid);

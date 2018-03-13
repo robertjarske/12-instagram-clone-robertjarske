@@ -37,3 +37,15 @@
   outline: none;
   border-bottom: 2px solid rgba(0, 17, 255, 0.411);
 }
+
+.btn-enabled {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-disabled {
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0.65;
+  cursor: not-allowed;
+}

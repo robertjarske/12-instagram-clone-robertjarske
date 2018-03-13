@@ -9,7 +9,7 @@ import comment from "./message-circle.svg";
 import "./style.css";
 
 const mapStateToProps = state => {
-  return { photos: state.photos };
+  return { photos: state.photoReducer.photos, user: state.authReducer.user };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -42,7 +42,7 @@ class ConnectedPhoto extends Component {
           </div>
           <div className="photoFooter">
             <div className="icons">  
-              <Like photoId={photo.id} likes={photo.likes}/>
+              <Like photoId={photo.id} likes={photo.likes.length}/>
               <img
                 onClick={this.handleClick.bind(this, photo)}
                 src={comment}
@@ -52,7 +52,7 @@ class ConnectedPhoto extends Component {
             <div className="comments">
               <CommentList comments={photo.comments} />
               {photo.textFieldShowing ?
-              <Form photoId={photo.id}/>
+              <Form user={this.props.user} photoId={photo.id}/>
               : 
                ""
                 }

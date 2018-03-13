@@ -6,7 +6,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { App } from '../components';
 
-import rootReducer from '../reducers';
+import rootReducer from '../reducers/index';
+
 
 const middleware = [ thunk ];
 
@@ -16,7 +17,9 @@ const store = createStore(
 );
 
 
+
 const Root = () => {
+  console.log(store.getState());
   return (
     <Provider store={store}>
       <BrowserRouter>

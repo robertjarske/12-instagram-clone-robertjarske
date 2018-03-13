@@ -17,14 +17,13 @@ export const receivePhotos = data => ({
 
 export const fetchPhotos = () => dispatch => {
   dispatch(requestPhotos());
-
   return fetch(url)
     .then(res => res.json())
     .then((data) => {
       const newPhoto = [];
       
       data.map((photo) => {
-        const likes = 0;
+        const likes = [];
         const comments = [];
         photo.likes = likes;
         photo.comments = comments;

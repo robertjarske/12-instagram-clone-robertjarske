@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-
+import { Redirect, Route } from 'react-router-dom';
 import { addComment } from "../../actions";
 import "./style.css";
 
@@ -16,8 +16,9 @@ class ConnectedForm extends Component {
     super(props);
 
     this.state = {
-      author: "Itsa mi MARIO",
-      content: ""
+      author: this.props.user.info.name,
+      content: "",
+      redirect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,16 +31,25 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { content } = this.state;
-    const id = uuidv1();
-    const { author } = this.state;
-    const photoId = this.props.photoId;
+    if (this.props.user.isLoggedIn) {
+      const { content } = this.state;
+      const id = uuidv1();
+      const { author } = this.state;
+      const photoId = this.props.photoId;
 
-    this.props.addComment({ author, content, id, photoId });
-    this.setState({ content: "" });
+      this.props.addComment({ author, content, id, photoId });
+      
+      return this.setState({ content: "" });
+    }
+    
+    return this.setState({redirect: true})
+
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/signin" />;
+    }
     const { content } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
