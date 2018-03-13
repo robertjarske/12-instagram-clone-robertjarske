@@ -1,10 +1,13 @@
 var express = require('express'),
+    cors = require('cors'),
     app = express();
 
 var db = require('./db.js');
 
 var UserController = require('./controllers/UserController');
 var AuthController = require('./controllers/AuthController');
+
+app.use(cors()); // To make the client and server play nice across domains...
 
 app.use('/users', UserController);
 app.use('/auth', AuthController);
