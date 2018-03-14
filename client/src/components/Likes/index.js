@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from 'react-router-dom';
 
-import { addLike } from "../../actions";
+import { addLike, putLike } from "../../actions";
 import heart from '../Photo/heart.svg';
 
 const mapDispatchToProps = dispatch => {
   return {
-    addLike: like => dispatch(addLike(like))
+    addLike: like => dispatch(addLike(like)),
+    putLike: like => dispatch(putLike(like))
   };
 };
 
@@ -31,7 +32,7 @@ class ConnectedLike extends Component {
       const photoId = this.props.photoId;
       const user = this.props.user.info.id;
 
-      return this.props.addLike({ photoId, user });
+      return this.props.putLike({photoId: photoId, userId: user});
     } 
 
     return this.setState({redirect: true});

@@ -14,7 +14,7 @@ function tokenVerify(req, res, next) {
 
   jwt.verify(token, config.secret, function(error, decodedToken) {
     if (error) {
-      res.status(500).send({
+      return res.status(500).send({
         authenticated: false,
         message: "An error occurred when trying to authenticate token"
       });
