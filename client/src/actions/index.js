@@ -17,27 +17,60 @@ export const receivePhotos = data => ({
 
 export const fetchPhotos = () => dispatch => {
   dispatch(requestPhotos());
-  return fetch(url)
-    .then(res => res.json())
-    .then((data) => {
-      const newPhoto = [];
-      
-      data.map((photo) => {
-        const likes = [];
-        const comments = [];
-        photo.likes = likes;
-        photo.comments = comments;
-
-        return newPhoto.push(photo)
-     })
-    
-      
-      return dispatch(receivePhotos(newPhoto));
-    })
-    .catch(response => {
-      console.error(response);
-      return dispatch({
-        type: FETCH_PHOTOS_FAILURE
+    return fetch('http://localhost:3001/photos')
+      .then(res => res.json())
+      .then((data) => {
+        data.map(photo => {
+          photo.textFieldShowing = false;
+          dispatch(receivePhotos(photo));
+        })
+      })
+      .catch(response => {
+        console.error(response);
+        return dispatch({
+          type: FETCH_PHOTOS_FAILURE
+        });
       });
-    });
-};
+  
+  
+  /**This is what I did first to get som data to mLab**/
+        
+        /*return fetch(url)
+          .then(res => res.json())
+          .then((data) => {
+            const newPhoto = [];
+            
+            data.map((photo) => {
+              const likes = [];
+              const comments = [];
+              photo.likes = likes;
+              photo.comments = comments;
+
+              return newPhoto.push(photo)
+          })      
+            return newPhoto;
+          })
+          .then(photos => {
+            photos.map((photo) => {
+              return fetch('http://localhost:3001/photos/store', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(photo)
+              })
+              .then(res => res.json())
+              .then(res => {
+                console.log(res.photo)
+                return dispatch(receivePhotos(res.photo));
+
+              })          
+            })
+          })
+          .catch(response => {
+            console.error(response);
+            return dispatch({
+              type: FETCH_PHOTOS_FAILURE
+            });
+          });*/
+}

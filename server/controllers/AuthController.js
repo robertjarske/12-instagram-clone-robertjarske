@@ -44,6 +44,7 @@ router.post("/login", function(req, res) {
 router.post("/register", function(req, res) {
   User.create({
       name: req.body.name,
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password
     }, function(error, user) {

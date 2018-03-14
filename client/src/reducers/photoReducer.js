@@ -4,28 +4,28 @@ import update from "immutability-helper";
 const initialState = {
   
   photos: [
-    {
-      id: 0,
-      imageUrl: 'https://placehold.it/500x500',
-      uploader: 'TM',
-      comments: [
-        {
-          id: 0,
-          author: 'Guran',
-          content: 'Testing here does it work'
-        }
-      ],
-      likes: ['test something'],
-      textFieldShowing: false
-    },
-    {
-      id: 1,
-      imageUrl: 'https://placehold.it/500x500',
-      uploader: 'ME',
-      comments: [],
-      likes: [],
-      textFieldShowing: false
-    }
+    // {
+    //   id: 0,
+    //   imageUrl: 'https://placehold.it/500x500',
+    //   uploader: 'TM',
+    //   comments: [
+    //     {
+    //       id: 0,
+    //       author: 'Guran',
+    //       content: 'Testing here does it work'
+    //     }
+    //   ],
+    //   likes: ['test something'],
+    //   textFieldShowing: false
+    // },
+    // {
+    //   id: 1,
+    //   imageUrl: 'https://placehold.it/500x500',
+    //   uploader: 'ME',
+    //   comments: [],
+    //   likes: [],
+    //   textFieldShowing: false
+    // }
   ],
   isFetching: false
 };
@@ -33,7 +33,7 @@ const initialState = {
 const photoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_COMMENT:
-      const index = state.photos.findIndex(photo => photo.id === action.payload.photoId)
+    const index = state.photos.findIndex(photo => photo._id === action.payload.photoId)
       const nextState = update(state, {
         photos: {
           [index]: { 
@@ -48,7 +48,7 @@ const photoReducer = (state = initialState, action) => {
       
 
     case ADD_LIKE:
-      const photo = state.photos.findIndex(photo => photo.id === action.payload.photoId)
+      const photo = state.photos.findIndex(photo => photo._id === action.payload.photoId)
       const user = action.payload.user
       if(state.photos[photo].likes.includes(user)) {
         const filteredLikes = state.photos[photo].likes.filter(id => id !== user);
@@ -81,7 +81,7 @@ const photoReducer = (state = initialState, action) => {
       }
         
     case SHOW_TEXTFIELD:
-      const i = state.photos.findIndex(photo => photo.id === action.payload.photoId)
+      const i = state.photos.findIndex(photo => photo._id === action.payload.photoId)
       const bool = action.payload.bool
       const newState = update(state, {
         photos: {
@@ -104,8 +104,15 @@ const photoReducer = (state = initialState, action) => {
         ...state,
         isFetching: false
       }
+
     case FETCH_PHOTOS_SUCCESS:
-      return { ...state, photos: action.payload };
+      const newPhotoState = update(state, {
+        photos: {
+          $push: [action.payload]
+        }
+      });
+    
+      return newPhotoState;
 
 
     default:

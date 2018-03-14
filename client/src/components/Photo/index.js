@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 class ConnectedPhoto extends Component {
 
   handleClick(photo, event) {
-    const photoId = photo.id;
+    const photoId = photo._id;
     const bool = !photo.textFieldShowing;
     
     this.props.showTextField({ photoId, bool });
@@ -31,9 +31,9 @@ class ConnectedPhoto extends Component {
   render() {
     return (
       <div className="App-photo">
-        {this.props.photos.map(photo => (
-          
-          <div key={photo.id}>
+      {this.props.photos.map(photo => (
+        
+          <div key={photo._id}>
           <div className="photoHeader">
             <img className="avatar" src={user} alt="" />
             <p>{photo.uploader}</p>
@@ -42,7 +42,7 @@ class ConnectedPhoto extends Component {
           </div>
           <div className="photoFooter">
             <div className="icons">  
-              <Like photoId={photo.id} likes={photo.likes.length}/>
+              <Like photoId={photo._id} likes={photo.likes.length}/>
               <img
                 onClick={this.handleClick.bind(this, photo)}
                 src={comment}
@@ -52,7 +52,7 @@ class ConnectedPhoto extends Component {
             <div className="comments">
               <CommentList comments={photo.comments} />
               {photo.textFieldShowing ?
-              <Form user={this.props.user} photoId={photo.id}/>
+              <Form user={this.props.user} photoId={photo._id}/>
               : 
                ""
                 }

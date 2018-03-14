@@ -9,6 +9,7 @@ const initialState = {
     info: {
       id: null,
       name: null,
+      username: null,
       email: null,
     }
   }
@@ -37,6 +38,7 @@ const authReducer = (state = initialState, action) => {
           info: {
             id: {$set: action.payload.info._id},
             name: {$set: action.payload.info.name},
+            username: {$set: action.payload.info.username},
             email: {$set: action.payload.info.email}
           }
         }

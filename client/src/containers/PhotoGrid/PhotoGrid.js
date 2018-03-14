@@ -23,7 +23,7 @@ class PhotoGrid extends Component {
       <div className="App-grid">
       {
         photos.map((photo) => (
-          <div className="App-grid__holder" key={photo.id}>
+          <div className="App-grid__holder" key={photo._id}>
             <Grid photo={photo} />
           </div>
         ))
