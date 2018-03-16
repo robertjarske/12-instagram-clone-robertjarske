@@ -18,33 +18,58 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-    const nextState = update(state, {
-      user: {
-        token: {$set: action.payload.token},
-        isLoggedIn: {$set: action.payload.authenticated},
-        isLoggingIn: {$set: false}
+    return {
+      user: {...state.user,
+        token: action.payload.token,
+        isLoggedIn: action.payload.authenticated,
+        isLoggingIn: false
       }
-    });
+    }
+    
+    
+    // const nextState = update(state, {
+    //   user: {
+    //     token: {$set: action.payload.token},
+    //     isLoggedIn: {$set: action.payload.authenticated},
+    //     isLoggingIn: {$set: false}
+    //   }
+    // });
 
-    return nextState;
+    // return nextState;
 
     case LOGIN_FAIL:
       return state;
 
     case USER_SUCCESS:
-      const user = update(state, {
+
+      return {...state,
         user: {
-          token: {$set: action.payload.token},
+          ...state.user,
+          token: action.payload.token,
           info: {
-            id: {$set: action.payload.info._id},
-            name: {$set: action.payload.info.name},
-            username: {$set: action.payload.info.username},
-            email: {$set: action.payload.info.email}
+            id: action.payload.info._id,
+            name: action.payload.info.name,
+            username: action.payload.info.username,
+            avatar: action.payload.info.avatar,
+            email: action.payload.info.email
           }
         }
-      });
+      
+      }
+      // const user = update(state, {
+      //   user: {
+      //     token: {$set: action.payload.token},
+      //     info: {
+      //       id: {$set: action.payload.info._id},
+      //       name: {$set: action.payload.info.name},
+      //       username: {$set: action.payload.info.username},
+      //       avatar: {$set: action.payload.info.avatar},
+      //       email: {$set: action.payload.info.email}
+      //     }
+      //   }
+      // });
 
-      return user;
+      // return user;
 
     default:
       return state;

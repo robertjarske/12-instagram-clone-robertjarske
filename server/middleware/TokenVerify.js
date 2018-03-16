@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 var config = require('../config');
+var User = require('../models/User');
 
 function tokenVerify(req, res, next) {
   
@@ -20,8 +21,13 @@ function tokenVerify(req, res, next) {
       });
     }
 
-    req.userId = decodedToken.id;
-    next();
+    User.findById(decodedToken.id)
+      .then(user => {
+        req.user = user;
+        req.userId = decodedToken.id;
+
+        next();
+      })
 
   });
 

@@ -1,4 +1,4 @@
-import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD, FETCH_PHOTOS_START, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_FAILURE } from "../constants/action-types";
+import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD, FETCH_PHOTOS_START, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_FAILURE, UPDATE_PHOTO_LIKE, UPDATE_PHOTO_COMMENT } from "../constants/action-types";
 import update from "immutability-helper";
 
 const initialState = {
@@ -106,14 +106,32 @@ const photoReducer = (state = initialState, action) => {
       }
 
     case FETCH_PHOTOS_SUCCESS:
-      const newPhotoState = update(state, {
-        photos: {
-          $push: [action.payload]
-        }
-      });
-    
-      return newPhotoState;
+      return {
+        ...state,
+        photos: [...state.photos, action.payload]
+      }
 
+    case UPDATE_PHOTO_LIKE:
+      return {
+        ...state, 
+        photos: state.photos.map(p => {
+          if (p._id === action.payload._id) {
+            p.likes = action.payload.likes
+          }
+          return p
+        })
+      }
+
+    case UPDATE_PHOTO_COMMENT:
+    return {
+      ...state,
+      photos: state.photos.map(p => {
+        if (p._id === action.payload._id) {
+          p.comments = action.payload.comments
+        }
+        return p
+      })
+    }
 
     default:
       return state;

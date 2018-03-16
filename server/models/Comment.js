@@ -1,13 +1,11 @@
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-// var PhotoSchema = new mongoose.Schema({
-//   createdAt: String,
-//   imageUrl: String, 
-//   comments: Array,
-//   likes: Array,
-//   uploader: String
-// });
+var CommentSchema = new mongoose.Schema({
+  createdAt: String,
+  author: String, 
+  content: String
+});
 
-// mongoose.model('Photo', PhotoSchema);
+mongoose.model('Comment', CommentSchema);
 
-// module.exports = mongoose.model('Photo');
+module.exports = mongoose.model('Comment');

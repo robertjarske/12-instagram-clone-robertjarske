@@ -45,6 +45,7 @@ router.post("/register", function(req, res) {
   User.create({
       name: req.body.name,
       username: req.body.username,
+      avatar: 'https://api.adorable.io/avatars/285/' + req.body.name + '@adorable.png',
       email: req.body.email,
       password: req.body.password
     }, function(error, user) {

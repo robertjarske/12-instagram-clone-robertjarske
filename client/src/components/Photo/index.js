@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { showTextField } from "../../actions";
+import { showTextField, uploadPhoto } from "../../actions";
 import Form from "../comments/Form";
 import CommentList from "../comments/CommentList";
 import Like from '../Likes';
@@ -14,7 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showTextField: bool => dispatch(showTextField(bool))
+    showTextField: bool => dispatch(showTextField(bool)),
+    uploadPhoto: photo => dispatch(uploadPhoto(photo))
   };
 };
 
@@ -28,9 +29,21 @@ class ConnectedPhoto extends Component {
     
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const user = this.props.user;
+    this.props.uploadPhoto({formData, user});
+  }
+
   render() {
     return (
       <div className="App-photo">
+      <form className="upload_form" onSubmit={this.handleSubmit.bind(this)} encType="multipart/form-data">
+      <input type="file" name="photo"/>
+      <button type="submit">Upload</button>
+      </form>
       {this.props.photos.map(photo => (
         
           <div key={photo._id}>

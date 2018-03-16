@@ -16,7 +16,7 @@ class ConnectedForm extends Component {
     super(props);
 
     this.state = {
-      author: this.props.user.info.name,
+      author: this.props.user.info.username,
       content: "",
       redirect: false
     };
@@ -33,11 +33,11 @@ class ConnectedForm extends Component {
     event.preventDefault();
     if (this.props.user.isLoggedIn) {
       const { content } = this.state;
-      const id = uuidv1();
+      // const id = uuidv1();
       const { author } = this.state;
       const photoId = this.props.photoId;
-
-      this.props.addComment({ author, content, id, photoId });
+    
+      this.props.addComment({ author, content, photoId });
       
       return this.setState({ content: "" });
     }

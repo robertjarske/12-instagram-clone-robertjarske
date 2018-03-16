@@ -8,15 +8,18 @@ const mapStateToProps = state => {
 };
 
 class Aside extends Component {
-
   render() {
     return(
       <div className="App-side">
+      {this.props.user.info.username !== null ?
         <div className="App-side__content">
-          <img className="App-side__content-avatar" src={user} alt=""/>
-          <p>{this.props.user.info.username}</p>
-          <p>{this.props.user.info.email}</p>
-        </div>
+      
+            <img className="App-side__content-avatar" src={this.props.user.info.avatar} alt=""/>
+            <p>{this.props.user.info.username}</p>
+            <p>{this.props.user.info.email}</p>
+          
+            </div>
+            : ''}
       </div>
     )
   }

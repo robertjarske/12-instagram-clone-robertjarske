@@ -5,7 +5,9 @@ var PhotoSchema = new mongoose.Schema({
   imageUrl: String, 
   comments: Array,
   likes: Array,
-  uploader: String
+  uploader: String,
+  uploaderId: String,
+  uploaderAvatar: String
 });
 
 mongoose.model('Photo', PhotoSchema);
