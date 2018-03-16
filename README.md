@@ -1,3 +1,10 @@
+1. cd client
+2. yarn
+3. yarn start
+4. cd ../server
+5. yarn
+6. yarn start
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
