@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
     cb(null, './uploads/')
   },
   filename: function(req, file, cb) {
-    cb(null, '/' + req.params.userId + '_' + Date.now() + file.originalname)
+    cb(null, req.params.userId + '_' + Date.now() + file.originalname)
   }
 })
 
@@ -25,7 +25,7 @@ var Comment = require('../models/Comment');
 /** Gets all photos from mLab */
 router.get("/", function(req, res) {
   Photo.find({})
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .exec(function(error, photos) {
       if (error) {
         return res
@@ -37,12 +37,12 @@ router.get("/", function(req, res) {
     });
 });
 
-/**Photo uploads uses tokenVerify to get the user*/
+/** Photo uploads uses tokenVerify to get the user */
 router.post("/uploads/:userId", tokenVerify, upload.single('photo'), function(req, res, next) {
   Photo.create(
     {
-      createdAt: req.body.createdAt,
-      imageUrl: req.file.path,
+      createdAt: new Date(),
+      imageUrl: '/' + req.file.path,
       comments: req.body.comments,
       likes: req.body.likes,
       uploader: req.user.username,

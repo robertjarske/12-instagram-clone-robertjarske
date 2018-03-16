@@ -48,14 +48,14 @@ class ConnectedPhoto extends Component {
         
           <div key={photo._id}>
           <div className="photoHeader">
-            <img className="avatar" src={user} alt="" />
+            <img className="avatar" src={photo.uploaderAvatar} alt="" />
             <p>{photo.uploader}</p>
           </div>
           <div className="App-photo__photoHolder" key={photo.id} style={{backgroundImage: `url('${photo.imageUrl}')`}}>
           </div>
           <div className="photoFooter">
             <div className="icons">  
-              <Like photoId={photo._id} likes={photo.likes.length}/>
+              <Like photo={photo} likes={photo.likes.length}/>
               <img
                 onClick={this.handleClick.bind(this, photo)}
                 src={comment}

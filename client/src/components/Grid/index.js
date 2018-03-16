@@ -66,7 +66,7 @@ class Grid extends Component {
             </div>
             <div className="App-grid__modalPhoto" style={{backgroundImage: `url('${photo.imageUrl}')`}}></div>
             <div className="likes_modal">
-            <Like photoId={photo._id} likes={photo.likes.length}/>
+            <Like photo={photo} likes={photo.likes.length}/>
             </div>
             </div>
             <div className="right_modal">

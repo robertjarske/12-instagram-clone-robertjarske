@@ -1,9 +1,10 @@
-import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD, FETCH_PHOTOS_START, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_FAILURE, UPDATE_PHOTO_LIKE, UPDATE_PHOTO_COMMENT } from '../constants/action-types';
+import { ADD_COMMENT, ADD_LIKE, SHOW_TEXTFIELD, FETCH_PHOTOS_START, FETCH_PHOTOS_SUCCESS, FETCH_PHOTOS_FAILURE, UPDATE_PHOTO_LIKE, UPDATE_PHOTO_COMMENT, UPDATE_PHOTO } from '../constants/action-types';
 
 export const addLike = like => ({ type: ADD_LIKE, payload: like });
 export const showTextField = bool => ({ type: SHOW_TEXTFIELD, payload: bool });
 export const updatePhotoLike = photo => ({type: UPDATE_PHOTO_LIKE, payload: photo})
 export const updatePhotoComment = photo => ({type: UPDATE_PHOTO_COMMENT, payload: photo})
+export const updatePhotos = photo => ({type: UPDATE_PHOTO, payload: photo})
 
 
 export const requestPhotos = () => ({
@@ -78,7 +79,7 @@ export function uploadPhoto(formData) {
     })
     .then(res => res.json())
     .then((res) => {
-      debugger;
+      dispatch(updatePhotos(res.photo));
     })
   }
 }

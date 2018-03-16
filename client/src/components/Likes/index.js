@@ -4,6 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 
 import { addLike, putLike } from "../../actions";
 import heart from '../Photo/heart.svg';
+import redHeart from '../Photo/heart-red.svg';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -29,7 +30,7 @@ class ConnectedLike extends Component {
 
   handleClick(event) {
     if(this.props.user.isLoggedIn) {
-      const photoId = this.props.photoId;
+      const photoId = this.props.photo._id;
       const user = this.props.user.info.id;
 
       return this.props.putLike({photoId: photoId, userId: user});
@@ -44,8 +45,17 @@ class ConnectedLike extends Component {
     }
     return (
       <div className="likes">
-        <img onClick={this.handleClick} src={heart} alt="" />
-        <p>{this.props.likes} likes</p>
+      {this.props.photo.likes.includes(this.props.user.info.id) ?
+        <div>
+          <img onClick={this.handleClick} src={redHeart} alt="" />
+          <p>{this.props.likes} likes</p>
+        </div>
+        : 
+        <div>
+          <img onClick={this.handleClick} src={heart} alt="" />
+          <p>{this.props.likes} likes</p>
+        </div>
+      }
       </div>
     );
   }

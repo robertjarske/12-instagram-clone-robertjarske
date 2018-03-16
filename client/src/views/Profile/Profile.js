@@ -19,7 +19,7 @@ class User extends Component {
     }
   return (
     <div className="Profile">
-      <h2>Your account</h2>
+      <img src={this.props.user.info.avatar} alt=""/>
       <p>{this.props.user.info.name}</p>
       <p>{this.props.user.info.email}</p>
 
