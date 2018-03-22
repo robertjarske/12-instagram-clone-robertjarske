@@ -18,3 +18,4 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 /**  User operations **/
 export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAIL = 'USER_FAIL';

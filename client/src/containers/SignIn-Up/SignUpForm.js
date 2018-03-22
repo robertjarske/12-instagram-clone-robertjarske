@@ -13,8 +13,7 @@ class SignUp extends Component {
       username: '',
       email: '',
       password: '',
-      btnDisabled: true,
-      redirect: this.props.user.isLoggedIn
+      btnDisabled: true
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,7 +40,7 @@ class SignUp extends Component {
   }
 
   render(){
-    if (this.state.redirect) {
+    if (this.props.user.isLoggedIn) {
       return <Redirect push to="/profile" />;
     }
     return (

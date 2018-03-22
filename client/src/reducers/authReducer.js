@@ -1,10 +1,11 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, USER_SUCCESS } from "../constants/action-types";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, USER_SUCCESS, USER_FAIL } from "../constants/action-types";
 import update from 'immutability-helper';
+import apiUtils from '../utils';
 
 const initialState = {
   user: {
     token: null,
-    isLoggedIn: localStorage.getItem('currentUser') ? true : false,
+    isLoggedIn: apiUtils.isLoggedIn(),
     isLoggingIn: false,
     info: {
       id: null,
@@ -25,17 +26,6 @@ const authReducer = (state = initialState, action) => {
         isLoggingIn: false
       }
     }
-    
-    
-    // const nextState = update(state, {
-    //   user: {
-    //     token: {$set: action.payload.token},
-    //     isLoggedIn: {$set: action.payload.authenticated},
-    //     isLoggingIn: {$set: false}
-    //   }
-    // });
-
-    // return nextState;
 
     case LOGIN_FAIL:
       return state;
@@ -56,20 +46,28 @@ const authReducer = (state = initialState, action) => {
         }
       
       }
-      // const user = update(state, {
-      //   user: {
-      //     token: {$set: action.payload.token},
-      //     info: {
-      //       id: {$set: action.payload.info._id},
-      //       name: {$set: action.payload.info.name},
-      //       username: {$set: action.payload.info.username},
-      //       avatar: {$set: action.payload.info.avatar},
-      //       email: {$set: action.payload.info.email}
-      //     }
-      //   }
-      // });
 
-      // return user;
+    case USER_FAIL:
+    return {...state,
+      error: [action.payload]
+    }
+
+    case LOGOUT_SUCCESS:
+    return {...state,
+      user: {
+        ...state.user,
+        isLoggedIn: false,
+        token: null,
+        info: {
+          ...state.user.info,
+          id: null,
+          name: null,
+          username: null,
+          avatar: null,
+          email: null
+        }
+      }
+    }
 
     default:
       return state;

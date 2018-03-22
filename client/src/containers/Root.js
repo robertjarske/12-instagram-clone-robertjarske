@@ -19,7 +19,6 @@ const store = createStore(
 
 
 const Root = () => {
-  console.log(store.getState());
   return (
     <Provider store={store}>
       <BrowserRouter>
