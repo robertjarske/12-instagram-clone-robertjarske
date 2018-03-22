@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import Like from '../Likes';
 import CommentList from '../comments/CommentList';
 import Form from '../comments/Form';
-import user from '../Header/user.png';
+import user from '../Header/user.svg';
 import comment from '../Photo/message-circle.svg';
 import './style.css';
 
@@ -44,6 +44,7 @@ class Grid extends Component {
   
   render() {
     const { photo } = this.props;
+    
 
     return ( 
       <div>
@@ -55,13 +56,13 @@ class Grid extends Component {
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel={photo._id}
         >
 
         <div className="modal">
           <div className="left_modal">
             <div className="photoHeader__modal">
-            <img className="avatar" src={user} alt="" />
+            <img className="avatar" src={photo.uploaderAvatar} alt="" />
             <p>{photo.uploader}</p>
             </div>
             <div className="App-grid__modalPhoto" style={{backgroundImage: `url('${photo.imageUrl}')`}}></div>

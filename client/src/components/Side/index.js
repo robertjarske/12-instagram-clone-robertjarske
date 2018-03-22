@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import user from '../Header/user.png';
+import user from '../Header/user.svg';
 import { connect } from 'react-redux';
 import './style.css';
 

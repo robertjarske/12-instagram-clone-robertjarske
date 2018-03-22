@@ -1,5 +1,5 @@
 import React from "react";
-import user from '../Header/user.png';
+import user from '../Header/user.svg';
 import moment from 'moment';
 import './style.css';
 

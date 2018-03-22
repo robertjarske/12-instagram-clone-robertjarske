@@ -4,7 +4,7 @@ import { showTextField, uploadPhoto } from "../../actions";
 import Form from "../comments/Form";
 import CommentList from "../comments/CommentList";
 import Like from '../Likes';
-import user from "../Header/user.png";
+import user from "../Header/user.svg";
 import comment from "./message-circle.svg";
 import "./style.css";
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Header, Footer } from '../';
-import { fetchUser } from "../../actions/auth";
+import { fetchUser, userLogout } from "../../actions/auth";
 import { fetchPhotos } from '../../actions';
 import {
   Home,
@@ -22,7 +22,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUser: token => dispatch(fetchUser(token)),
-    fetchPhotos: photos => dispatch(fetchPhotos())
+    fetchPhotos: photos => dispatch(fetchPhotos()),
+    userLogout: user => dispatch(userLogout())
   };
 }
 
@@ -30,6 +31,8 @@ class Root extends Component {
   constructor(props) {
     super(props);
     this.state = { }
+
+    this.localStorageUpdated = this.localStorageUpdated.bind(this);
   }
 
   componentDidMount(){
@@ -41,6 +44,18 @@ class Root extends Component {
     }
 
     return;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.localStorageUpdated)
+  }
+
+  componentWillReceiveProps() {
+    window.addEventListener('storage', this.localStorageUpdated)
+  }
+
+  localStorageUpdated() {
+    this.props.userLogout();
   }
 
   render(){
