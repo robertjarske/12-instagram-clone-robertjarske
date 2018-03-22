@@ -40,7 +40,8 @@ export function putLike(like) {
     return fetch(`http://localhost:3001/photos/${like.photoId}/likes/${like.userId}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('currentUser')
       },
       body: JSON.stringify(like) 
     })
@@ -57,7 +58,8 @@ export function addComment(comment) {
     return fetch(`http://localhost:3001/photos/${comment.photoId}/comments/${comment.author}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('currentUser')
       },
       body: JSON.stringify(comment)
     })
