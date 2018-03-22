@@ -61,7 +61,7 @@ router.post("/uploads/:userId", tokenVerify, upload.single('photo'), function(re
   );
 });
 
-router.put("/:photoId/likes/:userId", function(req, res) {
+router.put("/:photoId/likes/:userId", tokenVerify, function(req, res) {
   /** First find the id of the photo where the user want to put their like */
   Photo.findById(req.params.photoId, function(error, photo) {
     
@@ -100,7 +100,7 @@ router.put("/:photoId/likes/:userId", function(req, res) {
 });
 
 /** Store user comments */
-router.post('/:photoId/comments/:userId', function(req, res) {
+router.post('/:photoId/comments/:userId', tokenVerify, function(req, res) {
   Comment.create(
     {
       createdAt: new Date(),

@@ -13,11 +13,22 @@ function tokenVerify(req, res, next) {
     });
   }
 
-  jwt.verify(token, config.secret, function(error, decodedToken) {
-    if (error) {
+  jwt.verify(token, config.secret, function(err, decodedToken) {
+    if (err) {
+      let message = '';
+      // Todo: Add the other cases here, give them custom messages?
+      switch (err.name) {
+        case 'TokenExpiredError':
+          message = 'The token has expired'
+          break;
+        default:
+          message = 'An error occurred when trying to authenticate token'
+          break;
+      }
+
       return res.status(500).send({
         authenticated: false,
-        message: "An error occurred when trying to authenticate token"
+        message: message
       });
     }
 
