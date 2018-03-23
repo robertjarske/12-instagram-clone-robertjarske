@@ -1,9 +1,11 @@
+deployed @ https://instagraem.herokuapp.com/ - go check it out!
+
 1. cd client
 2. yarn
 3. yarn start
 4. cd ../server
 5. yarn
-6. yarn start
+6. nodemon server.js
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
