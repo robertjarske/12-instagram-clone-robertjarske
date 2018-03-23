@@ -18,7 +18,7 @@ export const receivePhotos = data => ({
 
 export const fetchPhotos = () => dispatch => {
   dispatch(requestPhotos());
-  return fetch('http://localhost:3001/photos')
+  return fetch('/photos')
   .then(res => res.json())
   .then((data) => {
     data.map(photo => {
@@ -37,7 +37,7 @@ export const fetchPhotos = () => dispatch => {
 
 export function putLike(like) {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/photos/${like.photoId}/likes/${like.userId}`, {
+    return fetch(`/photos/${like.photoId}/likes/${like.userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export function putLike(like) {
 
 export function addComment(comment) {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/photos/${comment.photoId}/comments/${comment.author}`, {
+    return fetch(`/photos/${comment.photoId}/comments/${comment.author}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export function uploadPhoto(formData) {
           })
           .then(photos => {
             photos.map((photo) => {
-              return fetch('http://localhost:3001/photos/store', {
+              return fetch('/photos/store', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'

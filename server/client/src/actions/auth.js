@@ -7,7 +7,7 @@ export const logoutSucess = token => ({ type: LOGOUT_SUCCESS });
 export const userSuccess = user => ({type: USER_SUCCESS, payload: user});
 export const userFail = error => ({type: USER_FAIL, payload: error})
 
-const loginUrl = 'http://localhost:3001/auth/login';
+const loginUrl = '/auth/login';
 
 export function requestLogin(credentials) {
   return (dispatch) => {
@@ -33,7 +33,7 @@ export function requestLogin(credentials) {
   }
 }
 
-const registerUrl = 'http://localhost:3001/auth/register'
+const registerUrl = '/auth/register'
 
 export function requestSignup(credentials) {
   return (dispatch) => {
@@ -63,7 +63,7 @@ export function requestSignup(credentials) {
 
 export function fetchUser(token) {
   return (dispatch) => {
-    return fetch('http://localhost:3001/auth/me', {
+    return fetch('/auth/me', {
       headers: {
         'Content-Type': 'application/json',
         'X-ACCESS-TOKEN': token
