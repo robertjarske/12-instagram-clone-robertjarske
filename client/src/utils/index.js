@@ -35,7 +35,7 @@ const apiUtils = {
   },
   checkExpired: (token) => {
     try {
-      const decodedToken = decode(token); // Does this trigger catch if it fails? ...
+      const decodedToken = decode(token);
       
       let now = Date.now()/1000;//because expiresIn from server is in seconds and date.now is in  milliseconds
       

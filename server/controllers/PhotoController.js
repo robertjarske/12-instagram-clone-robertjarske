@@ -104,7 +104,8 @@ router.post('/:photoId/comments/:userId', tokenVerify, function(req, res) {
   Comment.create(
     {
       createdAt: new Date(),
-      author: req.body.author, 
+      author: req.body.author,
+      authorAvatar: req.user.avatar, 
       content: req.body.content
     },
     function(error, comment) {

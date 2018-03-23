@@ -44,7 +44,6 @@ class Grid extends Component {
   
   render() {
     const { photo } = this.props;
-    
 
     return ( 
       <div>
@@ -57,6 +56,7 @@ class Grid extends Component {
         onRequestClose={this.closeModal}
         style={customStyles}
         contentLabel={photo._id}
+        ariaHideApp={false}
         >
 
         <div className="modal">

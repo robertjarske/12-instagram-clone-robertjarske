@@ -21,6 +21,8 @@ function tokenVerify(req, res, next) {
         case 'TokenExpiredError':
           message = 'The token has expired'
           break;
+        case 'JsonWebTokenError':
+        message = 'There seems to be an error with your token, please logout and login again'
         default:
           message = 'An error occurred when trying to authenticate token'
           break;

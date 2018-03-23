@@ -2,3 +2,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.commentUser {
+  width: 10%;
+  
+}
+
+.commentHeader {
+  display: flex;
+  align-items: flex-start;
+}
+
+.comment_created {
+  font-size: 0.7em;
+  font-style: italic;
+}

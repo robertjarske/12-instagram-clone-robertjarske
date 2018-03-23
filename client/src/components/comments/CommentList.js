@@ -10,12 +10,12 @@ const CommentList = ({ comments }) => (
         comments.map(comment => (
           <li className="commentBody" key={comment._id}>
             <div className="commentHeader">
-              <img className="commentUser" src={user} alt=""/>
+              <img className="commentUser" src={comment.authorAvatar} alt=""/>
               <p className="commentAuthor">
                 {comment.author}
               </p>
             </div>
-            <p>{moment(comment.createdAt).fromNow()}</p>
+            <p className="comment_created">{moment(comment.createdAt).fromNow()}</p>
             <p className="commentContent">
               {comment.content}
             </p>

@@ -6,6 +6,7 @@ import CommentList from "../comments/CommentList";
 import Like from '../Likes';
 import user from "../Header/user.svg";
 import comment from "./message-circle.svg";
+import moment from 'moment';
 import "./style.css";
 
 const mapStateToProps = state => {
@@ -49,7 +50,10 @@ class ConnectedPhoto extends Component {
           <div key={photo._id}>
           <div className="photoHeader">
             <img className="avatar" src={photo.uploaderAvatar} alt="" />
-            <p>{photo.uploader}</p>
+            <p>{photo.uploader} - </p>
+            <p className="photo_created">
+              {moment(photo.createdAt).fromNow()}
+            </p>
           </div>
           <div className="App-photo__photoHolder" key={photo.id} style={{backgroundImage: `url('${photo.imageUrl}')`}}>
           </div>
